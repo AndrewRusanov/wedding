@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Soledago";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Soledago.woff") format("woff");
+}
+
+@font-face {
+  font-family: "FuturaPT";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./FuturaPT.woff") format("woff");
+}
