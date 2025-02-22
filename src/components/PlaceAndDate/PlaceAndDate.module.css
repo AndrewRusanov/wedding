@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 0 40px;
+}
+
+.date {
+  margin: 20px 0 134px;
+  width: fit-content;
+  font-family: "Soledago", Arial, Helvetica, sans-serif;
+  font-size: 80px;
+  font-weight: 400;
+  padding: 0;
+  color: #f6ebc8;
+
+  position: relative;
+}
+
+.left_star {
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+
+.right_star {
+  position: absolute;
+  bottom: 3px;
+  right: -15px;
+}
+
+.huba_buba_cont {
+  margin: 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.place_cont {
+  margin: 0 0 32;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 69px;
+  text-transform: lowercase;
+  font-family: "FuturaPT", Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  font-weight: 400;
+  margin: 0;
+  text-decoration: none;
+  color: #f6ebc8;
+  /*padding: 0 40px;*/
+  background-color: #f3b216;
+  border-top: 1px solid #f6ebc8;
+  border-bottom: 1px solid #f6ebc8;
+}
