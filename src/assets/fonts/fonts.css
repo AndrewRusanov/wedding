@@ -11,5 +11,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./FuturaPT.woff") format("woff");
+  src: url("./futura-mediumcyrusbyme.woff") format("woff"), url('./futura-mediumcyrusbyme.woff2') format('woff2');
 }

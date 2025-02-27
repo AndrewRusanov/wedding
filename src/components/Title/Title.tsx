@@ -1,21 +1,14 @@
 import styles from "./Title.module.css";
-import titleAE from "../../assets/titleAE1.png";
+import titleAE from "../../assets/titleAE2.png";
+import AndrewLiza from '../../assets/andrewLiza.svg'
+import Greeting from '../../assets/greeting.svg'
 
 const Title = () => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.name_container}>
-        <span className={`${styles.title_andrew} ${styles.title_1}`}>
-          Андрей
-        </span>
-        <span className={`${styles.title_liza} ${styles.title_2}`}>Лиза</span>
-        <span className={`${styles.title_andrew} ${styles.title_3}`}>
-          Андрей
-        </span>
-        <span className={`${styles.title_liza} ${styles.title_4} `}>Лиза</span>
-        <img src={titleAE} alt="Поцелуй" className={styles.title_logo_AE} />
-      </div>
-      <div className={styles.greeting}>приглашаем на свадьбу</div>
+        <img src={AndrewLiza} alt="Поцелуй"  />
+        <img src={Greeting} alt="Поцелуй"  className={styles.greeting}/>
+        <img src={titleAE} alt="Поцелуй"  className={styles.titleAE}/>
     </div>
   );
 };
