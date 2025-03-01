@@ -4,7 +4,7 @@ import placeAndDate from '../../assets/dateAndPlace.svg'
 const PlaceAndDate = () => {
   return (
     <div className={styles.container}>
-        <img src={placeAndDate} />
+        <img src={placeAndDate}  className={styles.place}/>
       <a
         href="https://yandex.ru/maps/-/CHuVy-~o"
         target="_blank"

@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.place {
+  padding: 0 0 15px;
+}
+
 .link {
   position: absolute;
   bottom: 0px;
