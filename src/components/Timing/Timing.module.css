@@ -1,0 +1,115 @@
+.clean_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	position: relative;
+	width: 100vw;
+	/* Занимает всю ширину экрана */
+	height: calc(100vw * 2782 / 490);
+	/* Высота фона рассчитывается на основе соотношения сторон */
+	overflow: hidden;
+	/* Скрываем всё, что выходит за пределы контейнера */
+}
+
+.background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	/* Ширина фона равна ширине экрана */
+	height: calc(100vw * 2782 / 490);
+	/* Высота фона рассчитывается на основе соотношения сторон */
+	background-image: url('../../assets/Clean_timingAndDressCode.svg');
+	background-size: cover;
+	/* Масштабируем фон, чтобы он покрывал всю область */
+	background-position: center;
+	/* Центрируем фон */
+	background-repeat: no-repeat;
+	/* Запрещаем повторение фона */
+	border-bottom: 2px solid #f6ebc8;
+}
+
+.step1 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(280 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step2 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(553 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step3 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(838 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step4 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(1126 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step5 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(1423 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step6 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(1682 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+.step7 {
+	position: absolute;
+	left: -100%;
+	/* Начальное положение за пределами экрана */
+	animation: slideIn 1.5s forwards;
+	/* Анимация выезда */
+	padding: calc(1973 * 100vw / 490) 0 0;
+	/* padding-top зависит от ширины экрана */
+}
+
+@keyframes slideIn {
+	from {
+		left: -100%;
+		/* Начальное положение */
+	}
+
+	to {
+		left: 5%;
+		/* Останавливается на 5% от левого края */
+		transform: translateX(0);
+		/* Убираем корректировку, если не нужно центрирование */
+	}
+}
