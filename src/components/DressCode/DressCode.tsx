@@ -8,7 +8,7 @@ const DressCode: FC = () => {
     <div className={styles.clean_container}>
       <img src={dressCode} className={styles.dressCode} />
       <a
-        href="https://t.me/+R97-7slmd5Q3MmRi"
+        href="https://weddywood.ru/sovety-gostjam-na-svadbe-kak-proiznesti-idealnyj-tost/"
         target="_blank"
         className={styles.link}
       >
