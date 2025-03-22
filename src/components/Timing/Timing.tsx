@@ -12,7 +12,7 @@ const Timing: FC = () => {
   const [visibleSteps, setVisibleSteps] = useState<boolean[]>(Array(7).fill(false));
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]); // Массив рефов
 
-  const delay = 1500; // Задержка между шагами
+  const delay = 1000; // Задержка между шагами
 
   const revealStep = (index: number) => {
     setTimeout(() => {
