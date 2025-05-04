@@ -1,81 +1,71 @@
-import { FC, useEffect, useState, useRef } from 'react';
-import styles from './Timing.module.css';
-import step1 from '../../assets/15_30.svg';
-import step2 from '../../assets/16_30.svg';
-import step3 from '../../assets/17_00.svg';
-import step4 from '../../assets/18_00.svg';
-import step5 from '../../assets/21_50.svg';
-import step6 from '../../assets/22_00.svg';
-import step7 from '../../assets/00_00.svg';
+import { FC, useCallback, useEffect, useRef, useState } from "react";
+import styles from "./Timing.module.css";
+
+// Импорты изображений
+import step7 from "../../assets/00_00.svg";
+import step1 from "../../assets/15_30.svg";
+import step2 from "../../assets/16_30.svg";
+import step3 from "../../assets/17_00.svg";
+import step4 from "../../assets/18_00.svg";
+import step5 from "../../assets/21_50.svg";
+import step6 from "../../assets/22_00.svg";
+
+const STEP_IMAGES = [step1, step2, step3, step4, step5, step6, step7];
+
+// Конфигурация триггеров прокрутки для каждого шага
+const SCROLL_TRIGGERS = [
+  1590 - 844, // step1
+  1807 - 844, // step2
+  2034 - 844, // step3
+  2264 - 844, // step4
+  2500 - 844, // step5
+  2706 - 844, // step6
+  2938 - 844, // step7
+];
 
 const Timing: FC = () => {
-  const [visibleSteps, setVisibleSteps] = useState<boolean[]>(Array(7).fill(false));
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]); // Массив рефов
+  const [visibleSteps, setVisibleSteps] = useState<boolean[]>(
+    Array(7).fill(false)
+  );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationTriggered = useRef<boolean[]>(Array(7).fill(false));
 
-  const delay = 1000; // Задержка между шагами
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    const newVisibility = [...visibleSteps];
+    let needsUpdate = false;
 
-  const revealStep = (index: number) => {
-    setTimeout(() => {
-      setVisibleSteps((prev) => {
-        const updated = [...prev];
-        updated[index] = true;
-        return updated;
-      });
-    }, index * delay); // Задержка зависит от индекса
-  };
+    SCROLL_TRIGGERS.forEach((trigger, index) => {
+      if (scrollY >= trigger && !animationTriggered.current[index]) {
+        newVisibility[index] = true;
+        animationTriggered.current[index] = true;
+        needsUpdate = true;
+      }
+    });
+
+    if (needsUpdate) {
+      setVisibleSteps(newVisibility);
+    }
+  }, [visibleSteps]);
 
   useEffect(() => {
-    // Запускаем последовательное появление шагов
-    for (let i = 0; i < 7; i++) {
-      revealStep(i);
-    }
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   return (
-    <div className={styles.clean_container}>
+    <div className={styles.clean_container} ref={containerRef}>
       <div className={styles.background}>
-        <div
-          ref={(el) => { stepRefs.current[0] = el; }} // Просто устанавливаем реф
-          className={`${styles.step1} ${visibleSteps[0] ? styles.visible : ''}`}
-        >
-          <img src={step1} alt="Step 1" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[1] = el; }} // Просто устанавливаем реф
-          className={`${styles.step2} ${visibleSteps[1] ? styles.visible : ''}`}
-        >
-          <img src={step2} alt="Step 2" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[2] = el; }} // Просто устанавливаем реф
-          className={`${styles.step3} ${visibleSteps[2] ? styles.visible : ''}`}
-        >
-          <img src={step3} alt="Step 3" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[3] = el; }} // Просто устанавливаем реф
-          className={`${styles.step4} ${visibleSteps[3] ? styles.visible : ''}`}
-        >
-          <img src={step4} alt="Step 4" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[4] = el; }} // Просто устанавливаем реф
-          className={`${styles.step5} ${visibleSteps[4] ? styles.visible : ''}`}
-        >
-          <img src={step5} alt="Step 5" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[5] = el; }} // Просто устанавливаем реф
-          className={`${styles.step6} ${visibleSteps[5] ? styles.visible : ''}`}
-        >
-          <img src={step6} alt="Step 6" />
-        </div>
-        <div
-          ref={(el) => { stepRefs.current[6] = el; }} // Просто устанавливаем реф
-          className={`${styles.step7} ${visibleSteps[6] ? styles.visible : ''}`}
-        >
-          <img src={step7} alt="Step 7" />
-        </div>
+        {STEP_IMAGES.map((step, index) => (
+          <div
+            key={index}
+            className={`${styles.step} ${styles[`step${index + 1}`]} ${
+              visibleSteps[index] ? styles.visible : ""
+            }`}
+          >
+            <img src={step} alt={`Шаг ${index + 1}`} />
+          </div>
+        ))}
       </div>
     </div>
   );
