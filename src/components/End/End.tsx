@@ -9,7 +9,7 @@ import styles from "./End.module.css";
 dayjs.extend(duration);
 
 const End: FC = () => {
-  const targetTime = dayjs("2025-09-13T15:30:00");
+  const targetTime = dayjs("2025-09-13T07:30:00");
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
