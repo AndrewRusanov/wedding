@@ -8,16 +8,22 @@ import styles from "./End.module.css";
 
 dayjs.extend(duration);
 
+// Функция для склонения слов
+const pluralize = (count: number, words: [string, string, string]) => {
+  const cases = [2, 0, 1, 1, 1, 2];
+  return words[
+    count % 100 > 4 && count % 100 < 20 ? 2 : cases[Math.min(count % 10, 5)]
+  ];
+};
+
 const End: FC = () => {
   const targetTime = dayjs("2025-09-13T07:30:00");
-
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
-
   const [isCountDownFinished, setIsCountDownFinished] = useState(false);
 
   useEffect(() => {
@@ -57,19 +63,23 @@ const End: FC = () => {
           <div className={styles.time_container}>
             <div className={styles.time_item}>
               <span>{timeLeft.days.toString().padStart(2, "0")}</span>
-              <span>дней</span>
+              <span>{pluralize(timeLeft.days, ["день", "дня", "дней"])}</span>
             </div>
             <div className={styles.time_item}>
               <span>{timeLeft.hours.toString().padStart(2, "0")}</span>
-              <span>часов</span>
+              <span>{pluralize(timeLeft.hours, ["час", "часа", "часов"])}</span>
             </div>
             <div className={styles.time_item}>
               <span>{timeLeft.minutes.toString().padStart(2, "0")}</span>
-              <span>минут</span>
+              <span>
+                {pluralize(timeLeft.minutes, ["минута", "минуты", "минут"])}
+              </span>
             </div>
             <div className={styles.time_item}>
               <span>{timeLeft.seconds.toString().padStart(2, "0")}</span>
-              <span>секунд</span>
+              <span>
+                {pluralize(timeLeft.seconds, ["секунда", "секунды", "секунд"])}
+              </span>
             </div>
           </div>
         </div>
