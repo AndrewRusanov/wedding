@@ -1,73 +1,81 @@
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
-import { FC, useEffect, useState } from 'react'
-import end from '../../assets/end.svg'
-import styles from './End.module.css'
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+import { FC, useEffect, useState } from "react";
+import end from "../../assets/end.svg";
+import weLeft from "../../assets/мы слева.png";
+import weRight from "../../assets/мы справа.png";
+import styles from "./End.module.css";
 
-dayjs.extend(duration)
+dayjs.extend(duration);
 
 const End: FC = () => {
-	const targetTime = dayjs('2025-09-13T15:30:00')
+  const targetTime = dayjs("2025-09-13T15:30:00");
 
-	const [timeLeft, setTimeLeft] = useState({
-		days: 0,
-		hours: 0,
-		minutes: 0,
-		seconds: 0,
-	})
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
-	const [isCountDownFinished, setIsCountDownFinished] = useState(false)
+  const [isCountDownFinished, setIsCountDownFinished] = useState(false);
 
-	useEffect(() => {
-		const timer = setInterval(() => {
-			const now = dayjs()
-			const diff = targetTime.diff(now)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = dayjs();
+      const diff = targetTime.diff(now);
 
-			if (diff <= 0) {
-				setIsCountDownFinished(true)
-				clearInterval(timer)
-				return
-			}
+      if (diff <= 0) {
+        setIsCountDownFinished(true);
+        clearInterval(timer);
+        return;
+      }
 
-			const durationObj = dayjs.duration(diff)
+      const durationObj = dayjs.duration(diff);
 
-			setTimeLeft({
-				days: Math.floor(durationObj.asDays()),
-				hours: durationObj.hours(),
-				minutes: durationObj.minutes(),
-				seconds: durationObj.seconds(),
-			})
-		}, 1000)
+      setTimeLeft({
+        days: Math.floor(durationObj.asDays()),
+        hours: durationObj.hours(),
+        minutes: durationObj.minutes(),
+        seconds: durationObj.seconds(),
+      });
+    }, 1000);
 
-		return () => clearInterval(timer)
-	}, [targetTime])
+    return () => clearInterval(timer);
+  }, [targetTime]);
 
-	return (
-		<div className={styles.container}>
-			<img src={end} />
-			{!isCountDownFinished && <div className={styles.time}>
-				<h5 className={styles.time_title}>до свадьбы</h5>
-				<div className={styles.time_container}>
-					<div className={styles.time_item}>
-						<span>{timeLeft.days.toString().padStart(2, '0')}</span>
-						<span>дней</span>
-					</div>
-					<div className={styles.time_item}>
-						<span>{timeLeft.hours.toString().padStart(2, '0')}</span>
-						<span>часов</span>
-					</div>
-					<div className={styles.time_item}>
-						<span>{timeLeft.minutes.toString().padStart(2, '0')}</span>
-						<span>минут</span>
-					</div>
-					<div className={styles.time_item}>
-						<span>{timeLeft.seconds.toString().padStart(2, '0')}</span>
-						<span>секунд</span>
-					</div>
-				</div>
-			</div>}
-		</div>
-	)
-}
+  return (
+    <div className={styles.clean_container}>
+      <img src={end} />
+      <div className={styles.flowersContainer}>
+        <img src={weLeft} className={styles.flowersExample} />
+        <img src={weRight} className={styles.flowersExample} />
+      </div>
+      {!isCountDownFinished && (
+        <div className={styles.time}>
+          <h5 className={styles.time_title}>до свадьбы</h5>
+          <div className={styles.time_container}>
+            <div className={styles.time_item}>
+              <span>{timeLeft.days.toString().padStart(2, "0")}</span>
+              <span>дней</span>
+            </div>
+            <div className={styles.time_item}>
+              <span>{timeLeft.hours.toString().padStart(2, "0")}</span>
+              <span>часов</span>
+            </div>
+            <div className={styles.time_item}>
+              <span>{timeLeft.minutes.toString().padStart(2, "0")}</span>
+              <span>минут</span>
+            </div>
+            <div className={styles.time_item}>
+              <span>{timeLeft.seconds.toString().padStart(2, "0")}</span>
+              <span>секунд</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default End
+export default End;
